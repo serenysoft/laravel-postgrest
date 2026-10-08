@@ -197,7 +197,7 @@ test('beginTransaction is not supported', function () {
 });
 
 test('commit and rollBack are no-ops', function () {
-    /** @var \Sereny\PostgREST\Connection $connection */
+    /** @var Connection $connection */
     $connection = connectionWith(new MockHandler([]));
 
     expect($connection->commit())->toBeNull()
