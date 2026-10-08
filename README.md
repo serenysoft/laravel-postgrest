@@ -1,5 +1,9 @@
 # Sereny/PostgREST
 
+[![Build Status](https://github.com/serenysoft/laravel-postgrest/actions/workflows/run-tests.yml/badge.svg)](https://github.com/serenysoft/laravel-postgrest/actions/workflows/run-tests.yml)
+[![Code Coverage](https://codecov.io/gh/serenysoft/laravel-postgrest/branch/main/graph/badge.svg)](https://codecov.io/gh/serenysoft/laravel-postgrest)
+[![Total Downloads](https://img.shields.io/packagist/dt/sereny/postgrest.svg)](https://packagist.org/packages/sereny/postgrest)
+
 A PostgREST connection driver for Laravel Eloquent. It lets your Eloquent models
 perform queries against a [PostgREST](https://github.com/PostgREST/postgrest)
 server over HTTP, without a direct PostgreSQL/PDO connection from your app.
