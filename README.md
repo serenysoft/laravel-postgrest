@@ -148,6 +148,27 @@ The pivot table must have foreign keys to both related tables (a requirement
 of PostgREST resource embedding). `attach`/`detach`/`sync` write to the pivot
 table over the same connection.
 
+Three-level relationships (`hasManyThrough`) use nested embedding:
+
+```php
+use Sereny\PostgREST\Eloquent\Model;
+
+class Country extends Model
+{
+    protected $connection = 'postgrest';
+
+    public function posts()
+    {
+        return $this->hasManyThrough(Post::class, User::class);
+    }
+}
+```
+
+```php
+Country::find(1)->posts;              // GET /countries?select=*,users(country_id,posts(*))
+Country::with('posts')->get();        // eager, one nested embedded request
+```
+
 ## Feature support
 
 | Feature | Supported |
@@ -167,7 +188,7 @@ table over the same connection.
 | Soft deletes | ✅ |
 | `hasOne` / `hasMany` / `belongsTo` / morph relations | ✅ |
 | `belongsToMany` (via resource embedding) | ✅ |
-| `hasManyThrough` | ❌ |
+| `hasManyThrough` (via nested embedding) | ✅ |
 | `sum` / `avg` / `min` / `max` | ⚠️ via `rpc()` to a database function (or a view) |
 | `groupBy` / `having` / `distinct` | ❌ (not exposed by PostgREST — use a view) |
 | `increment` / `decrement` / raw expressions | ❌ (not exposed by PostgREST — use computed fields or RPC) |

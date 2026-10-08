@@ -19,9 +19,11 @@ SQL/PDO. Namespace root: `Sereny\PostgREST\`.
   `PostgrestClient` call (Guzzle).
 - `PostgrestClient` maps descriptors to HTTP; `count()` uses
   `Prefer: count=exact` + `Content-Range`.
-- `Eloquent\Model` (base) overrides `newBelongsToMany()` →
-  `Eloquent\Relations\BelongsToMany`, which reads via **resource embedding**
-  (`select=*,pivot(fks,related(*))`) instead of SQL joins.
+- `Eloquent\Model` (base) overrides `newBelongsToMany()` and
+  `newHasManyThrough()` → `Eloquent\Relations\BelongsToMany` /
+  `HasManyThrough`, which read via **resource embedding**
+  (`select=*,pivot(fks,related(*))` and `select=*,through(fk,related(*))`)
+  instead of SQL joins.
 
 ## Build and Test
 
